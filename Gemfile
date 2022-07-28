@@ -48,7 +48,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 gem 'aws-sdk-s3', require: false
 gem 'active_storage_validations'
-
+gem 'webpacker', '~> 4.3.x'
 gem 'devise'
 
 group :development, :test do
