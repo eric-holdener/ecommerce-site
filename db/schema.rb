@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_28_164327) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_29_194223) do
   create_table "discounts", force: :cascade do |t|
     t.string "code"
     t.integer "percent"
@@ -41,6 +41,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_164327) do
   create_table "ratings", force: :cascade do |t|
     t.integer "stars"
     t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -50,6 +50,8 @@ gem 'aws-sdk-s3', require: false
 gem 'active_storage_validations'
 gem 'webpacker', '~> 4.3.x'
 gem 'devise'
+gem 'bcrypt'
+gem 'rack-cors'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
