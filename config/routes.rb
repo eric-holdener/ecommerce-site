@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-  resources :order_products
-  resources :ratings
-  resources :products
-  resources :orders
-  resources :discounts
-
-  resources :users, only: [:create, :show, :index]
+  namespace :api do
+    namespace :v1 do
+      get 'products/index'
+      get 'product/:id', to: 'products#show'
+    end
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
+  root "baseapp#index"
 end
