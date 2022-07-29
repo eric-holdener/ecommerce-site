@@ -27,20 +27,20 @@ def show
          end
     end
     
-    def create
-       @user = User.new(user_params)
-           if @user.save
-               login!  
-               render json: {
-               status: :created,
-               user: @user
-           }
-          else 
+  def create
+      @user = User.new(user_params)
+          if @user.save
+              login!  
               render json: {
-              status: 500,
-              errors: @user.errors.full_messages
+              status: :created,
+              user: @user
           }
-          end
+        else 
+            render json: {
+            status: 500,
+            errors: @user.errors.full_messages
+        }
+        end
     end
 private
     

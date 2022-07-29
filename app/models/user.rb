@@ -9,5 +9,6 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :last_name, uniqueness: true
 
-  
+  has_many :ratings
+  has_many :orders
 end
