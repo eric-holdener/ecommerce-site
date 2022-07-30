@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_28_164327) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_29_205346) do
   create_table "discounts", force: :cascade do |t|
     t.string "code"
     t.integer "percent"
@@ -28,6 +28,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_164327) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders_products", id: false, force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.index ["order_id"], name: "index_orders_products_on_order_id"
+    t.index ["product_id"], name: "index_orders_products_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.float "price"
@@ -41,6 +48,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_164327) do
   create_table "ratings", force: :cascade do |t|
     t.integer "stars"
     t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
