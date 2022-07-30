@@ -21,35 +21,35 @@ import UserOrders from './components/User/UserOrders'
 import OrderSearch from './components/Orders/OrderSearch';
 import Order from './components/Orders/Order'
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Provider store={Store}>
-      <UserProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<App />}>
-              <Route index element={<Homepage />}/>
-              <Route path="products" element={<Product />}>
-                <Route path=":category" element={<Category />} />
+export default function Routes() {
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <React.StrictMode>
+      <Provider store={Store}>
+        <UserProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<App />}>
+                <Route index element={<Homepage />}/>
+                <Route path="products" element={<Product />}>
+                  <Route path=":category" element={<Category />} />
+                </Route>
+                <Route path="product/:productId" element={<ProductDetails />} />
+                <Route path="checkout" element={<Checkout />} />
+                <Route path="login" element={<Login/>} />
+                <Route path="user" element={<AuthChecker><UserDetails/></AuthChecker>} />
+                <Route path="user/orders" element={<AuthChecker><UserOrders/></AuthChecker>} />
+                <Route path="orders" element={<OrderSearch/>} />
+                <Route path="orders/:orderId" element={<Order/>} />
+                <Route path="*" element={<NotFound/>} />
               </Route>
-              <Route path="product/:productId" element={<ProductDetails />} />
-              <Route path="checkout" element={<Checkout />} />
-              <Route path="login" element={<Login/>} />
-              <Route path="user" element={<AuthChecker><UserDetails/></AuthChecker>} />
-              <Route path="user/orders" element={<AuthChecker><UserOrders/></AuthChecker>} />
-              <Route path="orders" element={<OrderSearch/>} />
-              <Route path="orders/:orderId" element={<Order/>} />
-              <Route path="*" element={<NotFound/>} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </UserProvider>
-    </Provider>
-  </React.StrictMode>
-);
-
+            </Routes>
+          </BrowserRouter>
+        </UserProvider>
+      </Provider>
+    </React.StrictMode>
+  );
+}
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
