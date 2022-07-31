@@ -8,4 +8,8 @@ class Product < ApplicationRecord
     a = a.where('id = ?', product_id) if product_id.present?
     a
   end
+
+  def self.all_categories
+    Product.distinct.pluck(:category)
+  end
 end
