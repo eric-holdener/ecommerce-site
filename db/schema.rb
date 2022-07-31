@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_31_005115) do
-  create_table "order_products", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2022_07_31_040442) do
   create_table "orders", force: :cascade do |t|
     t.float "total_cost"
     t.string "status"
     t.datetime "order_date"
     t.datetime "ship_date"
     t.datetime "deliver_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

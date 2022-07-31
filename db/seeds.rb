@@ -36,5 +36,10 @@ order = Order.create(total_cost: 232, status: "confirmed", order_date: Time.now,
 product1 = Product.find(6)
 product2 = Product.find(9)
 
-order.products << product1
-order.products << product2
+products = [product1, product2]
+
+products.each do |p|
+  p.orders << order
+end
+
+Rating.create(stars: 5, comment: "I love this backpack more than life itself.", product_id: 1)
