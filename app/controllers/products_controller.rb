@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def show_category
-    if params[:category] == "All"
+    if params[:category] == "all"
       @products = Product.all
     elsif params[:category]
       @products = Product.where(category: params[:category])
