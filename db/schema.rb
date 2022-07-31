@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_31_004546) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_31_005115) do
   create_table "order_products", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_id"
@@ -43,6 +43,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_31_004546) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_ratings_on_product_id"
   end
 
+  add_foreign_key "ratings", "products"
 end
