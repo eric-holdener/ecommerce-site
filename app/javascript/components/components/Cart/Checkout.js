@@ -4,11 +4,35 @@ import { useDispatch, useSelector } from "react-redux"
 import { cartTotalPriceSelector } from "../../redux/selectors";
 import CheckoutItem from "./CheckoutItem";
 import React from 'react';
+import axios from "axios";
 
 export default function Checkout() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const totalPrice = useSelector(cartTotalPriceSelector)
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const [shippingAddress, setShippingAddress] = useState();
+  const [billingAddress, setBillingAddress] = useState();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const token = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token
+    axios.post('http://127.0.0.1:3000/api/v1/orders/create', {
+      order: {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        shippingAddress: shippingAddress,
+        billingAddress: billingAddress,
+        cart: cart
+      }
+    })
+  }
 
   return (
     <div className="checkoutContainer">
@@ -20,35 +44,35 @@ export default function Checkout() {
           {totalPrice > 0 && <div>Total: ${totalPrice}</div>}
         </div>
       </div>
-      <Form className="checkoutForm">
+      <Form className="checkoutForm" onSubmit={handleSubmit}>
         <div className="checkoutFormRow">
           <label>
             First Name:
-            <input type="text" name="firstName" />
+            <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
           </label>
           <label>
             Last Name:
-            <input type="text" name="lastName" />
+            <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
           </label>
         </div>
         <div className="checkoutFormRow">
           <label>
             Email:
-            <input type="text" name="email" />
+            <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
           </label>
           <label>
             Phone: 
-            <input type="text" name="phone" />
+            <input type="text" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
           </label>
         </div>
         <div className="checkoutFormRow">
           <label>
             Shipping Address:
-            <input type="text" name="shippingAdress" />
+            <input type="text" name="shippingAddress" value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)}/>
           </label>
           <label>
             Billing Address:
-            <input type="text" name="billingAddress" />
+            <input type="text" name="billingAddress" value={billingAddress} onChange={(e) => setBillingAddress(e.target.value)}/>
           </label>
         </div> 
         <div className="checkoutFormRow">

@@ -50,6 +50,7 @@ gem "bootsnap", require: false
 gem 'react-rails'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'webpacker'
+gem 'bigdecimal', '~> 1.2', '>= 1.2.7'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

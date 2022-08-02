@@ -31,7 +31,7 @@ products = Product.create([
   {title:"DANVOUY Womens T Shirt Casual Cotton Short",price:12.99,description:"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",category:"women's clothing",image:"https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"}])
 
 
-order = Order.create(total_cost: 232, status: "confirmed", order_date: Time.now, ship_date: nil, deliver_date: nil)
+order = Order.create(total_cost: 232, status: "confirmed", order_date: Time.now, ship_date: nil, deliver_date: nil, shipping_address: "123 Address Ave", billing_address: "123 Address Ave", user_id: nil, first_name: "Eric", last_name: "Holdener", email: "testemail@gmail.com", phone: "1234567890")
 
 product1 = Product.find(6)
 product2 = Product.find(9)
