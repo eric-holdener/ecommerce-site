@@ -26,8 +26,6 @@ export default function Product(props) {
             <div className="productCardRight">
               <p>{data.title}</p>
               <p>{data.price}</p>
-              <p>{data.rating.rate}</p>
-
             </div>
           </Link>
           <div>

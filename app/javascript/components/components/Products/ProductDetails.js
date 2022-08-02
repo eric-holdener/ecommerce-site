@@ -11,7 +11,7 @@ export default function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${params.productId}`)
+    fetch(`http://127.0.0.1:3000/api/v1/products/product/${params.productId}`)
       .then(res => res.json())
       .then(json => setData(json))
   }, [])
