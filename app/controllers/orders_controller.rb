@@ -9,7 +9,8 @@ class OrdersController < ApplicationController
   # GET /orders/1 or /orders/1.json
   def get_order
     @order = Order.find(params[:id])
-    render json: @order
+    print(@order.to_json)
+    render json: @order, include: ['products']
   end
 
   # POST /orders or /orders.json

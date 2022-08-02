@@ -23,7 +23,7 @@ import Order from './components/Orders/Order'
 
 export default function Index() {
   return (
-    <Provider store={Store}>
+  <Provider store={Store}>
     <UserProvider>
       <BrowserRouter>
         <Routes>
@@ -37,9 +37,8 @@ export default function Index() {
             <Route path="login" element={<Login/>} />
             <Route path="user" element={<AuthChecker><UserDetails/></AuthChecker>} />
             <Route path="user/orders" element={<AuthChecker><UserOrders/></AuthChecker>} />
-            <Route path="orders" element={<OrderSearch/>}>
-              <Route path=":orderId" element={<Order/>} />
-            </Route>
+            <Route path="orders" element={<OrderSearch/>} />
+            <Route path="orders/:orderId" element={<Order/>} />
             <Route path="*" element={<NotFound/>} />
           </Route>
         </Routes>

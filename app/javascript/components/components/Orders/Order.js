@@ -8,10 +8,14 @@ export default function Order() {
   const params = useParams();
 
   useEffect(() => {
-    const url = `http://127.0.0.1:3000/api/v1/products/category/${params.orderId}`
+    const url = `http://127.0.0.1:3000/api/v1/orders/order/${params.orderId}`
     fetch(url)
-    .then(res=> res.json())
+    .then(res=> {
+      console.log(res);
+      res.json();
+    })
     .then(json=>{
+      console.log(json)
       setData(json);
     })
     .then(list => {
@@ -21,10 +25,27 @@ export default function Order() {
   return (
     <>
       {data ? (
-        <div>
-          <p>Data</p>
-          {console.log(data)}
-        </div>
+        <>
+          <div>
+            <p>Order #{params.orderId}</p>
+          </div>
+          <div>
+            {/* {data.products.map((product) => {
+              <div className='productCard'>
+                <div className="productCardLeft">
+                  <img src={product.image} className="productImage"></img>
+                </div>
+                <div className="productCardRight">
+                  <p>{product.title}</p>
+                  <p>{product.description}</p>
+                  <p>{product.price}</p>
+                </div>
+              </div>
+            })} */}
+            {console.log(data)}
+          </div>        
+        </>
+
       ) : (
         <div>
           <p>Loading...</p>
