@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { cartTotalPriceSelector } from "../../redux/selectors";
 import CheckoutItem from "./CheckoutItem";
 import React from 'react';
-import { jQuery } from "react_ujs";
+import axios from "axios";
 
 export default function Checkout() {
   const dispatch = useDispatch();
@@ -19,22 +19,19 @@ export default function Checkout() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const requestOptions = {
-      method: 'PUT',
-      body: JSON.stringify({ order: {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          phone: phone,
-          shippingAddress: shippingAddress,
-          billingAddress: billingAddress,
-          cart: cart
-        }
-      }),
-      headers: {}
-    }
-
-    fetch('http://127.0.0.1:3000/api/v1/orders/create', requestOptions)
+    const token = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token
+    axios.post('http://127.0.0.1:3000/api/v1/orders/create', {
+      order: {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        shippingAddress: shippingAddress,
+        billingAddress: billingAddress,
+        cart: cart
+      }
+    })
   }
 
   return (
