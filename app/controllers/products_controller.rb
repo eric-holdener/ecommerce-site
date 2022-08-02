@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
 
   def get_product
     @product = Product.find(params[:id])
-    print(@products.to_json)
     render json: @product
   end
 

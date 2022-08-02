@@ -7,12 +7,15 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/1 or /orders/1.json
-  def show
+  def get_order
+    @order = Order.find(params[:id])
+    render json: @order
   end
 
   # POST /orders or /orders.json
   def create
     @order = Order.create_new_order(order_params)
+    render json: @order
   end
 
   private
