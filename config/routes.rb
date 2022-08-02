@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     get '/products/category/:category', to: 'products#get_category'
     get '/products/product/:id', to: 'products#get_product'
     get '/products/categories', to: 'products#all_categories'
+
+    post 'orders/create', to: 'orders#create'
   end
 
   # Defines the root path route ("/")
