@@ -7,7 +7,8 @@ export default function Homepage(props) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/categories")
+    const url = "api/v1/products/categories"
+    fetch(url)
           .then(res => res.json())
           .then(data => {
             setCategories(data);

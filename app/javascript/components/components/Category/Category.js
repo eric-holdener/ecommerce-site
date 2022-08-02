@@ -10,8 +10,9 @@ export default function Category(props) {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/category/${params.category}`)
-    .then(res=>res.json())
+    const url = `http://127.0.0.1:3000/api/v1/products/category/${params.category}`
+    fetch(url)
+    .then(res=> res.json())
     .then(json=>{
       setData(json);
     })
