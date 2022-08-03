@@ -4,7 +4,7 @@ class DiscountsController < ApplicationController
   # GET /discounts/1 or /discounts/1.json
   def show
     if Discount.where(code: params[:code]).empty?
-      @discount = {percent: 0}
+      @discount = { percent: 0 }
     else
       @discount = Discount.where(code: params[:code])
     end
@@ -18,7 +18,7 @@ class DiscountsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_discount
       if Discount.where(code: params[:code]).empty?
-        @discount = {percent: 0}
+        @discount = { percent: 0 }
       else
         @discount = Discount.where(code: params[:code])
       end
