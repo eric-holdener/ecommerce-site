@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 export default function OrderSearch() {
-  const [orderId, setOrderId] = useState();
+  const [orderId, setOrderId] = useState(0);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -12,11 +12,16 @@ export default function OrderSearch() {
     navigate(`/orders/${orderId}`, {replace: true})
   }
 
+  function handleChange(e) {
+    let num = parseInt(e.target.value)
+    setOrderId(num)
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
       <label>
         Order Number
-        <input type="text" name="orderId" value={orderId} onChange={(e) => setOrderId(e.target.value)} />
+        <input type="text" name="orderId" value={orderId} onChange={(e) => handleChange(e)} />
       </label>
       <input type="submit" value="Submit" />
     </Form>
