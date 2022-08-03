@@ -7,41 +7,46 @@ export default function Order() {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
 
+
   useEffect(() => {
-    const url = `http://127.0.0.1:3000/api/v1/orders/order/${params.orderId}`
-    fetch(url)
-    .then(res=> {
-      console.log(res);
-      res.json();
-    })
-    .then(json=>{
-      console.log(json)
-      setData(json);
-    })
-    .then(list => {
-      setIsLoading(false);
-    })
-  }, []);
+    fetch(`http://127.0.0.1:3000/api/v1/orders/order/${params.orderId}`)
+      .then(res => res.json())
+      .then(json => setData(json))
+  }, [])
   return (
     <>
       {data ? (
         <>
           <div>
-            <p>Order #{params.orderId}</p>
+            <h1>Order #{params.orderId}</h1>
+            <h2>Order Status: {data.status}</h2>
+            <h2>Total Cost: {data.total_cost}</h2>
+            {data.ship_date ? (
+              <h2>Shipped On: {data.ship_date}</h2>
+            ) : (
+              <h2>Not yet shipped</h2>
+            )}
+            {data.deliver_date ? (
+              <h2>Delivered On: {data.deliver_date}</h2>
+            ) : (
+              <h2>Not yet delivered</h2>
+            )}
           </div>
           <div>
-            {/* {data.products.map((product) => {
-              <div className='productCard'>
-                <div className="productCardLeft">
-                  <img src={product.image} className="productImage"></img>
+            {data.products.map((product) => {
+              return (
+                <div className='productCard'>
+                  <div className="productCardLeft">
+                    <img src={product.image} className="productImage"></img>
+                  </div>
+                  <div className="productCardRight">
+                    <p>{product.title}</p>
+                    <p>{product.description}</p>
+                    <p>{product.price}</p>
+                  </div>
                 </div>
-                <div className="productCardRight">
-                  <p>{product.title}</p>
-                  <p>{product.description}</p>
-                  <p>{product.price}</p>
-                </div>
-              </div>
-            })} */}
+              )
+            })}
             {console.log(data)}
           </div>        
         </>

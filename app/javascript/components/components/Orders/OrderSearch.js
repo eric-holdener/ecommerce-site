@@ -13,8 +13,8 @@ export default function OrderSearch() {
   }
 
   function handleChange(e) {
-    let num = parseInt(e.target.value)
-    setOrderId(num)
+    let num = parseInt(e.target.value) || 0;
+    setOrderId(num);
   }
 
   return (
