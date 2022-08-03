@@ -14,8 +14,8 @@ class Order < ApplicationRecord
 
     if params[:discount]
       discount = params[:discount]
-      discount_id = discount.id
-      discount_percent = discount.percent
+      discount_id = params[:discount][:discount_id]
+      discount_percent = params[:discount][:percent]
     end
     cart.map do |product|
       total_cost = total_cost + (product[:price] * product[:quantity])

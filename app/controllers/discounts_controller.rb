@@ -2,7 +2,7 @@ class DiscountsController < ApplicationController
   before_action :set_discount, only: %i[ show edit update destroy ]
 
   # GET /discounts/1 or /discounts/1.json
-  def show
+  def get_discount
     if Discount.where(code: params[:code]).empty?
       @discount = { percent: 0 }
     else

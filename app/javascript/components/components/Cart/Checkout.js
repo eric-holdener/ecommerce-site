@@ -18,7 +18,7 @@ export default function Checkout() {
   const [phone, setPhone] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
   const [billingAddress, setBillingAddress] = useState("");
-  const [discount, setDiscount] = useState({percent: 0});
+  const [discount, setDiscount] = useState([{percent: 0}]);
   const [discountCode, setDiscountCode] = useState("")
   const [intermediateDiscountCode, setIntermediateDiscountCode] = useState("")
   const navigate = useNavigate()
@@ -32,7 +32,7 @@ export default function Checkout() {
   function handleSubmit(e) {
     e.preventDefault();
     let orderDict = {}
-    if (discount.percent > 0) {
+    if (discount[0].percent > 0) {
       orderDict = {
         firstName: firstName,
         lastName: lastName,
@@ -41,7 +41,11 @@ export default function Checkout() {
         shippingAddress: shippingAddress,
         billingAddress: billingAddress,
         cart: cart,
-        discount: discount
+        discount: {
+          discount_id: discount[0].id,
+          percent: discount[0].percent,
+          code: discount[0].code,
+        }
       }
     } else {
       orderDict = {
@@ -54,6 +58,7 @@ export default function Checkout() {
         cart: cart,
       }
     }
+    console.log(orderDict)
     const token = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = token
     axios.post('http://127.0.0.1:3000/api/v1/orders/create', {
@@ -75,15 +80,7 @@ export default function Checkout() {
           return <CheckoutItem item={product} key={product.id} />
         })}
         <div>
-          {discount.code ? (
-            <>
-              <p>Discount code applied: {discount.code}</p>
-              <p>% off: {discount.percent}</p>
-            </>
-          ) : (
-            <p>No discount applied</p>
-          )}
-          {totalPrice > 0 && <div>Total: ${totalPrice - (totalPrice*discount.percent)}</div>}
+          {totalPrice > 0 && <div>Total: ${totalPrice - (totalPrice*(discount[0].percent))}</div>}
         </div>
       </div>
       <div>
@@ -123,13 +120,13 @@ export default function Checkout() {
           </div>
         </Form>
         <div>
-          <Form onSubmit={checkDiscountCode}>
+          <div>
             <label>
               Apply Discount:
               <input type="text" name="discountCode" value={intermediateDiscountCode} onChange={(e) => setIntermediateDiscountCode(e.target.value)} />
             </label>
-            <input type="submit" value="Submit" />
-          </Form>
+            <button onClick={() => checkDiscountCode()}>Check Discount</button>
+          </div>
         </div>
       </div>
 

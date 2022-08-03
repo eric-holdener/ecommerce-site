@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get '/products/categories', to: 'products#all_categories'
     get '/orders/order/:id', to: 'orders#get_order'
     post 'orders/create', to: 'orders#create'
-    get '/discounts/:code', to: 'discounts#show'
+    get '/discounts/:code', to: 'discounts#get_discount'
   end
 
   # Defines the root path route ("/")
