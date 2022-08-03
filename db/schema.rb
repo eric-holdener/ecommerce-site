@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_02_011858) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_03_142550) do
+  create_table "discounts", force: :cascade do |t|
+    t.float "percent"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.float "total_cost"
     t.string "status"
@@ -26,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_011858) do
     t.string "last_name"
     t.string "email"
     t.string "phone"
+    t.integer "discount_id"
   end
 
   create_table "orders_products", force: :cascade do |t|

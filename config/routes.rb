@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :discounts
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   scope 'api/v1' do
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
     get '/products/categories', to: 'products#all_categories'
     get '/orders/order/:id', to: 'orders#get_order'
     post 'orders/create', to: 'orders#create'
+    get '/discounts/:code', to: 'discounts#get_discount'
   end
 
   # Defines the root path route ("/")

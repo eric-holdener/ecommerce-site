@@ -6,6 +6,7 @@ import CheckoutItem from "./CheckoutItem";
 import React from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Checkout() {
   const dispatch = useDispatch();
@@ -17,26 +18,59 @@ export default function Checkout() {
   const [phone, setPhone] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
   const [billingAddress, setBillingAddress] = useState("");
+  const [discount, setDiscount] = useState([{percent: 0}]);
+  const [discountCode, setDiscountCode] = useState("")
+  const [intermediateDiscountCode, setIntermediateDiscountCode] = useState("")
   const navigate = useNavigate()
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:3000/api/v1/discounts/${discountCode}`)
+      .then(res => res.json())
+      .then(json => setDiscount(json))
+  }, [discountCode])
 
   function handleSubmit(e) {
     e.preventDefault();
-    const token = document.querySelector('[name=csrf-token]').content
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = token
-    axios.post('http://127.0.0.1:3000/api/v1/orders/create', {
-      order: {
+    let orderDict = {}
+    if (discount[0].percent > 0) {
+      orderDict = {
         firstName: firstName,
         lastName: lastName,
         email: email,
         phone: phone,
         shippingAddress: shippingAddress,
         billingAddress: billingAddress,
-        cart: cart
+        cart: cart,
+        discount: {
+          discount_id: discount[0].id,
+          percent: discount[0].percent,
+          code: discount[0].code,
+        }
       }
+    } else {
+      orderDict = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        shippingAddress: shippingAddress,
+        billingAddress: billingAddress,
+        cart: cart,
+      }
+    }
+    console.log(orderDict)
+    const token = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token
+    axios.post('http://127.0.0.1:3000/api/v1/orders/create', {
+      order: orderDict
     })
     .then(res => {
       navigate(`/orders/${res.data.id}`, {replace: true})
     })
+  }
+
+  function checkDiscountCode() {
+    setDiscountCode(intermediateDiscountCode);
   }
 
   return (
@@ -46,44 +80,56 @@ export default function Checkout() {
           return <CheckoutItem item={product} key={product.id} />
         })}
         <div>
-          {totalPrice > 0 && <div>Total: ${totalPrice}</div>}
+          {totalPrice > 0 && <div>Total: ${totalPrice - (totalPrice*(discount[0].percent))}</div>}
         </div>
       </div>
-      <Form className="checkoutForm" onSubmit={handleSubmit}>
-        <div className="checkoutFormRow">
-          <label>
-            First Name:
-            <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-          </label>
-          <label>
-            Last Name:
-            <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-          </label>
+      <div>
+        <Form className="checkoutForm" onSubmit={handleSubmit}>
+          <div className="checkoutFormRow">
+            <label>
+              First Name:
+              <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+            </label>
+            <label>
+              Last Name:
+              <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+            </label>
+          </div>
+          <div className="checkoutFormRow">
+            <label>
+              Email:
+              <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+            </label>
+            <label>
+              Phone: 
+              <input type="text" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+            </label>
+          </div>
+          <div className="checkoutFormRow">
+            <label>
+              Shipping Address:
+              <input type="text" name="shippingAddress" value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)}/>
+            </label>
+            <label>
+              Billing Address:
+              <input type="text" name="billingAddress" value={billingAddress} onChange={(e) => setBillingAddress(e.target.value)}/>
+            </label>
+          </div> 
+          <div className="checkoutFormRow">
+            <input type="submit" value="Submit" />
+          </div>
+        </Form>
+        <div>
+          <div>
+            <label>
+              Apply Discount:
+              <input type="text" name="discountCode" value={intermediateDiscountCode} onChange={(e) => setIntermediateDiscountCode(e.target.value)} />
+            </label>
+            <button onClick={() => checkDiscountCode()}>Check Discount</button>
+          </div>
         </div>
-        <div className="checkoutFormRow">
-          <label>
-            Email:
-            <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-          </label>
-          <label>
-            Phone: 
-            <input type="text" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
-          </label>
-        </div>
-        <div className="checkoutFormRow">
-          <label>
-            Shipping Address:
-            <input type="text" name="shippingAddress" value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)}/>
-          </label>
-          <label>
-            Billing Address:
-            <input type="text" name="billingAddress" value={billingAddress} onChange={(e) => setBillingAddress(e.target.value)}/>
-          </label>
-        </div> 
-        <div className="checkoutFormRow">
-          <input type="submit" value="Submit" />
-        </div>
-      </Form>
+      </div>
+
     </div>
   )
 }
