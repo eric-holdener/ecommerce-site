@@ -36,6 +36,9 @@ order = Order.create(total_cost: 232, status: "confirmed", order_date: Time.now,
 product1 = Product.find(6)
 product2 = Product.find(9)
 
+discount1 = Discount.create(percent: 0.15, code: "bitwiseclass")
+discount2 = Discount.create(percent: 1.00, code: "freestuff")
+
 products = [product1, product2]
 
 products.each do |p|

@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   has_and_belongs_to_many :products
-  has_one :discount, optional: true
+  belongs_to :discount, optional: true
 
   def self.create_new_order(params)
     cart = params[:cart]
