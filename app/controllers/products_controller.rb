@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
 
   def get_product
     @product = Product.find(params[:id])
-    render json: @product
+    render json: @product, include: ['ratings']
   end
 
   def all_categories
