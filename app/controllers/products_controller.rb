@@ -10,13 +10,11 @@ class ProductsController < ApplicationController
     elsif params[:category]
       @products = Product.where(category: params[:category])
     end
-    print(@products.to_json)
     render json: @products
   end
 
   def get_product
     @product = Product.find(params[:id])
-    print(@products.to_json)
     render json: @product
   end
 

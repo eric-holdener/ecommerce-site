@@ -5,17 +5,19 @@ import { cartTotalPriceSelector } from "../../redux/selectors";
 import CheckoutItem from "./CheckoutItem";
 import React from 'react';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const totalPrice = useSelector(cartTotalPriceSelector)
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-  const [shippingAddress, setShippingAddress] = useState();
-  const [billingAddress, setBillingAddress] = useState();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [shippingAddress, setShippingAddress] = useState("");
+  const [billingAddress, setBillingAddress] = useState("");
+  const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,6 +33,9 @@ export default function Checkout() {
         billingAddress: billingAddress,
         cart: cart
       }
+    })
+    .then(res => {
+      navigate(`/orders/${res.data.id}`, {replace: true})
     })
   }
 

@@ -17,6 +17,7 @@ const { loggedInUser } = useContext(UserContext);
         ) : (
           <NavLink to={"/login"} className="headerLinksUser">Login</NavLink>
         )}
+        <NavLink to={"/orders"} className="headerLinksUser">Order Search</NavLink>
         <ShoppingCart className="headerLinks"/>
       </div>
     </div>

@@ -23,7 +23,7 @@ import Order from './components/Orders/Order'
 
 export default function Index() {
   return (
-    <Provider store={Store}>
+  <Provider store={Store}>
     <UserProvider>
       <BrowserRouter>
         <Routes>
