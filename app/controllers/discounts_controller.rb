@@ -3,7 +3,11 @@ class DiscountsController < ApplicationController
 
   # GET /discounts/1 or /discounts/1.json
   def show
-    @discount = Discount.find(params[:id])
+    if Discount.where(code: params[:code]).empty?
+      @discount = {percent: 0}
+    else
+      @discount = Discount.where(code: params[:code])
+    end
     render json: @discount
   end
 
@@ -13,7 +17,11 @@ class DiscountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_discount
-      @discount = Discount.find(params[:id])
+      if Discount.where(code: params[:code]).empty?
+        @discount = {percent: 0}
+      else
+        @discount = Discount.where(code: params[:code])
+      end
     end
 
     # Only allow a list of trusted parameters through.
