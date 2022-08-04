@@ -14,7 +14,7 @@ export default function CartItem(props) {
             <img src={props.item.image} className="productImageCheckout"></img>
           </div>
           <div className="cartItemData">
-            <h6>{props.item.title}</h6>
+            <p style={{fontWeight: "bold"}}>{props.item.title}</p>
             <p>Price: ${props.item.price}</p>
             <p>Quantity: {props.item.quantity}</p>
             <p>Total Price: ${parseFloat(props.item.price)*props.item.quantity}</p>

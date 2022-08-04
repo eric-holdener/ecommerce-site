@@ -13,7 +13,7 @@ export default function CheckoutItem(props) {
             <img src={props.item.image} className="productImageCheckout"></img>
           </div>
           <div className="checkoutItemData">
-            <h6>{props.item.title}</h6>
+            <h1 className="productTitle">{props.item.title}</h1>
             <p>Price: ${props.item.price}</p>
             <p>Quantity: {props.item.quantity}</p>
             <p>Total Price: ${parseInt(props.item.price)*props.item.quantity}</p>
