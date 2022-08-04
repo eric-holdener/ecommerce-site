@@ -332,7 +332,6 @@
 }
 
 .categoryCard-jewelery {
-  background: url("../../assets/images/jewelery.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
@@ -344,7 +343,6 @@
 }
 
 .categoryCard-electronics {
-  background: url("../../assets/images/electronics.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
@@ -356,7 +354,6 @@
 }
 
 .categoryCard-mensclothing {
-  background: url("../../assets/images/men\'s\ clothing.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
@@ -368,7 +365,6 @@
 }
 
 .categoryCard-womensclothing {
-  background: url("../../assets/images/women\'s\ clothing.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
