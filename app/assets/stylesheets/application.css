@@ -348,6 +348,7 @@
 }
 
 .categoryCard-jewelery {
+  background: url("jewelery.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
@@ -359,6 +360,7 @@
 }
 
 .categoryCard-electronics {
+  background: url("electronics.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
@@ -370,6 +372,7 @@
 }
 
 .categoryCard-mensclothing {
+  background: url("men\'s\ clothing.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
@@ -381,6 +384,7 @@
 }
 
 .categoryCard-womensclothing {
+  background: url("women\'s\ clothing.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
@@ -421,20 +425,4 @@
 
 .productDetails {
   padding-bottom: 25px;
-}
-
-.categoryCard-womensclothing {
-  background: asset-url("women\'s\ clothing.jpg");
-}
-
-.categoryCard-mensclothing {
-  background: asset-url("men\'s\ clothing.jpg");
-}
-
-.categoryCard-electronics {
-  background: asset-url("electronics.jpg");
-}
-
-.categoryCard-jewelery {
-  background: asset-url("jewelery.jpg");
 }

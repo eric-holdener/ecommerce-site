@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clear } from "../../redux/cart-slice";
 import { Link } from "react-router-dom";
 import React from 'react';
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function ShoppingCart() {
   const dispatch = useDispatch();
