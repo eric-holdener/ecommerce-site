@@ -424,17 +424,17 @@
 }
 
 .categoryCard-womensclothing {
-  background: url("../../../assets/images/women\'s\ clothing.jpg");
+  background: url("~women\'s\ clothing.jpg");
 }
 
 .categoryCard-mensclothing {
-  background: url("../../../assets/images/men\'s\ clothing.jpg");
+  background: url("~men\'s\ clothing.jpg");
 }
 
 .categoryCard-electronics {
-  background: url("../../../assets/images/electronics.jpg");
+  background: url("~electronics.jpg");
 }
 
 .categoryCard-jewelery {
-  background: url("../../../assets/images/jewelery.jpg");
+  background: url("~jewelery.jpg");
 }
