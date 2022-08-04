@@ -61,7 +61,7 @@ export default function Checkout() {
     console.log(orderDict)
     const token = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = token
-    axios.post('http://127.0.0.1:3000/api/v1/orders/create', {
+    axios.post('https://mighty-mountain-39829.herokuapp.com/api/v1/orders/create', {
       order: orderDict
     })
     .then(res => {
