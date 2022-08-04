@@ -372,7 +372,7 @@
 }
 
 .categoryCard-mensclothing {
-  background: url("men\'s\ clothing.jpg");
+  background: url("mensclothing.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
@@ -384,7 +384,7 @@
 }
 
 .categoryCard-womensclothing {
-  background: url("women\'s\ clothing.jpg");
+  background: url("womensclothing.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 25vw;
