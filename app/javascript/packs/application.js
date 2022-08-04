@@ -3,26 +3,26 @@ var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 
-require("@popperjs/core")
+// require("@popperjs/core")
 
-import "bootstrap"
+// import "bootstrap"
 
-// Import the specific modules you may need (Modal, Alert, etc)
-import { Tooltip, Popover } from "bootstrap"
+// // Import the specific modules you may need (Modal, Alert, etc)
+// import { Tooltip, Popover } from "bootstrap"
 
-// The stylesheet location we created earlier
-require("./application.scss")
+// // The stylesheet location we created earlier
+// require("./application.scss")
 
-// If you're using Turbolinks. Otherwise simply use: jQuery(function () {
-document.addEventListener("turbolinks:load", () => {
-    // Both of these are from the Bootstrap 5 docs
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-        return new Tooltip(tooltipTriggerEl)
-    })
+// // If you're using Turbolinks. Otherwise simply use: jQuery(function () {
+// document.addEventListener("turbolinks:load", () => {
+//     // Both of these are from the Bootstrap 5 docs
+//     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+//     var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+//         return new Tooltip(tooltipTriggerEl)
+//     })
 
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-    var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
-        return new Popover(popoverTriggerEl)
-    })
-})
+//     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+//     var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+//         return new Popover(popoverTriggerEl)
+//     })
+// })
