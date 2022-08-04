@@ -424,17 +424,17 @@
 }
 
 .categoryCard-womensclothing {
-  background: url("~women\'s\ clothing.jpg");
+  background: asset-url("women\'s\ clothing.jpg");
 }
 
 .categoryCard-mensclothing {
-  background: url("~men\'s\ clothing.jpg");
+  background: asset-url("men\'s\ clothing.jpg");
 }
 
 .categoryCard-electronics {
-  background: url("~electronics.jpg");
+  background: asset-url("electronics.jpg");
 }
 
 .categoryCard-jewelery {
-  background: url("~jewelery.jpg");
+  background: asset-url("jewelery.jpg");
 }
