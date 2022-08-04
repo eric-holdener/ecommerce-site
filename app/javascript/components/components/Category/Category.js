@@ -10,7 +10,7 @@ export default function Category(props) {
   const params = useParams();
 
   useEffect(() => {
-    const url = `http://127.0.0.1:3000/api/v1/products/category/${params.category}`
+    const url = `https://mighty-mountain-39829.herokuapp.com/api/v1/products/category/${params.category}`
     fetch(url)
     .then(res=> res.json())
     .then(json=>{

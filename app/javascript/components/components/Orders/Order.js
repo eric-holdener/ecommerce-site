@@ -12,7 +12,7 @@ export default function Order() {
   const [dom, setDom] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:3000/api/v1/orders/order/${params.orderId}`)
+    fetch(`https://mighty-mountain-39829.herokuapp.com/api/v1/orders/order/${params.orderId}`)
       .then(res => res.json())
       .then(json => {
         setData(json)

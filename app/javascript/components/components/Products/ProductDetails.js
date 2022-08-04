@@ -12,7 +12,7 @@ export default function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:3000/api/v1/products/product/${params.productId}`)
+    fetch(`https://mighty-mountain-39829.herokuapp.com/api/v1/products/product/${params.productId}`)
       .then(res => res.json())
       .then(json => setData(json))
   }, [])

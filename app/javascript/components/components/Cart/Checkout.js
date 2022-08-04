@@ -24,7 +24,7 @@ export default function Checkout() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:3000/api/v1/discounts/${discountCode}`)
+    fetch(`https://mighty-mountain-39829.herokuapp.com/api/v1/discounts/${discountCode}`)
       .then(res => res.json())
       .then(json => setDiscount(json))
   }, [discountCode])
