@@ -328,7 +328,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .categoryCard-jewelery {
@@ -383,4 +383,30 @@
   background-color: white;
   padding: 5px;
   border-radius: 5px;
+}
+
+.ratingContainer {
+  padding-top: 25px;
+}
+
+.rating {
+  padding-top: 25px;
+  border-bottom: 2px solid gray;
+}
+
+.ratingStars {
+  font-weight: bold;
+}
+
+.ratingReview {
+  padding-left: 15px;
+}
+
+.ratingsHeader {
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.productDetails {
+  padding-bottom: 25px;
 }
