@@ -25,7 +25,7 @@ export default function Product(props) {
             </div>
             <div className="productCardRight">
               <p>{data.title}</p>
-              <p>{data.price}</p>
+              <p>${data.price}</p>
             </div>
           </Link>
           <div>
